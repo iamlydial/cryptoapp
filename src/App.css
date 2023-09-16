@@ -23,8 +23,10 @@ a:hover {
 }
 
 .navbar {
+  z-index: 999;
   flex: 0.2;
   background-color: rgb(0, 21, 41);
+  height: 60px;
 }
 
 .main {
@@ -33,14 +35,20 @@ a:hover {
 }
 .routes {
   padding: 20px;
+  margin-top: 120px;
 }
 .nav-container {
   position: fixed;
+  top: 0;
   left: 0;
-  margin: 10px;
-  height: 100vh;
-  margin: 0px;
+  width: 100%;
   background-color: rgb(0, 21, 41);
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  transition: all 0.3s ease-in-out;
 }
 
 .logo-container {
@@ -64,6 +72,13 @@ a:hover {
   font-size: 1.2rem !important;
   background-color: var(--bgSecondary) !important;
   border: none !important;
+}
+
+.menu .ant-menu-item .menu-label {
+  display: inline-block;
+  margin-left: 10px; /* Add spacing between the icon and label */
+  color: white; /* Change the color as needed */
+  font-size: 16px; /* Adjust the font size as needed */
 }
 
 .loader {
@@ -103,7 +118,7 @@ a:hover {
 
   .main {
     flex: 1;
-    margin-top: 90px;
+    margin-top: 60px;
     margin-left: 0px;
     margin-right: 10px;
   }
@@ -114,6 +129,22 @@ a:hover {
     width: 100%;
     z-index: 100;
     background-color: var(--bgSecondary);
+    padding-left: 0;
+    padding-right: 0;
+    justify-content: space-between;
+  }
+
+  .menu {
+    display: none; /* Hide the menu items */
+  }
+
+  .menu-toggle {
+    display: block;
+    margin-right: 10px;
+    font-size: 1.2rem;
+    background-color: var(--bgSecondary);
+    border: none;
+    color: white;
   }
 
   .menu-control-container {
@@ -129,6 +160,25 @@ a:hover {
   }
   .show-more {
     font-size: 1.3rem !important;
+  }
+}
+
+@media screen and (min-width: 801px) {
+  .menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px; /* Adjust the padding as needed */
+    background-color: rgb(0, 21, 41);
+    border-top: 1px solid var(--border);
+  }
+
+  .menu-toggle {
+    display: none; /* Hide the burger menu icon */
+  }
+
+  .menu-control-container {
+    display: none !important; /* Hide the vertical icons */
   }
 }
 
