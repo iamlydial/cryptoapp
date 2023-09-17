@@ -7,6 +7,9 @@ import { useGetCryptoNewsQuery } from "../services/cryptoNewsApi";
 const { Text, Title } = Typography;
 const { Option } = Select;
 
+const demoImage =
+  "https://www.bing.com/th?id=OVFT.mpzuVZnv8dwIMRfQGPbOPC&pid=News";
+
 const News = ({ simplified }) => {
   const [newsCategory, setNewsCategory] = useState("Cryptocurrency");
   const count = simplified ? 6 : 12;
@@ -40,6 +43,7 @@ const News = ({ simplified }) => {
                 <Title className="news-title" level={4}>
                   {news.name}
                 </Title>
+                <img src={news?.image?.thumbnail?.contentUrl || demoImage} />
               </div>
             </a>
           </Card>
