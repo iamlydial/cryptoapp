@@ -27,6 +27,9 @@ const CryptoDetails = () => {
   const [timePeriod, setTimePeriod] = useState("7d");
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
   const cryptoDetails = data?.data?.coins;
+  const genericData = data?.data?.stats;
+
+  console.log(genericData, "Generic Data");
   console.log(cryptoDetails, "cryptodetails");
   console.log(coinId, "coin id");
 
@@ -60,32 +63,13 @@ const CryptoDetails = () => {
   const genericStats = [
     {
       title: "Number Of Markets",
-      value: selectedCrypto?.numberOfMarkets,
+      value: genericData?.totalMarkets,
       icon: <FundOutlined />,
     },
     {
       title: "Number Of Exchanges",
-      value: selectedCrypto?.numberOfExchanges,
+      value: genericData?.totalExchanges,
       icon: <MoneyCollectOutlined />,
-    },
-    {
-      title: "Aprroved Supply",
-      value: selectedCrypto?.approvedSupply ? (
-        <CheckOutlined />
-      ) : (
-        <StopOutlined />
-      ),
-      icon: <ExclamationCircleOutlined />,
-    },
-    {
-      title: "Total Supply",
-      value: `$ ${millify(selectedCrypto?.totalSupply)}`,
-      icon: <ExclamationCircleOutlined />,
-    },
-    {
-      title: "Circulating Supply",
-      value: `$ ${millify(selectedCrypto?.circulatingSupply)}`,
-      icon: <ExclamationCircleOutlined />,
     },
   ];
 
@@ -131,11 +115,34 @@ const CryptoDetails = () => {
                     : title === "Rank"
                     ? selectedCrypto.rank
                     : title === "24h Volume"
-                    ? selectedCrypto['24hVolume']
-                      ? `$ ${millify(selectedCrypto['24hVolume'])}`
+                    ? selectedCrypto["24hVolume"]
+                      ? `$ ${millify(selectedCrypto["24hVolume"])}`
                       : "N/A" // Display "N/A" if volume is undefined
                     : title === "Market Cap"
                     ? `$ ${millify(selectedCrypto.marketCap)}`
+                    : "N/A"}
+                </Text>
+              </Col>
+            ))}
+          </Col>
+          <Col className="coin-value-statistics">
+            <Col className="coin-value-statistics-heading">
+              <Title level={3} className="coin-details-heading">
+                Other Statistics
+                <p>An overview of the stats of all Cryptocurrencies</p>
+              </Title>
+            </Col>
+            {genericStats.map(({ icon, title, value }) => (
+              <Col className="coin-stats">
+                <Col className="coin-stats-name">
+                  <Text>{icon}</Text>
+                  <Text>{title}</Text>
+                </Col>
+                <Text className="stats">
+                  {title === "Number Of Markets"
+                    ? `$ ${millify(genericData.totalMarkets)}`
+                    : title === "Number Of Exchanges"
+                    ? genericData.totalExchanges
                     : "N/A"}
                 </Text>
               </Col>
