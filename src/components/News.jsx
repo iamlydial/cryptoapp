@@ -43,10 +43,10 @@ const News = ({ simplified }) => {
             showSearch
             className="select-news"
             placeholder="Select a Crypto"
-            optionFilterProp="children"
+            optionFilterProp="items"
             onChange={(value) => setNewsCategory(value)}
             filteringOption={(input, option) =>
-              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+              option.items.toLowerCase().indexOf(input.toLowerCase()) >= 0
             }
           >
             <Option value="Cryptocurrency">Cryptocurrency</Option>
