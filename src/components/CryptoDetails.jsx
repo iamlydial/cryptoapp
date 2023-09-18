@@ -60,17 +60,17 @@ const CryptoDetails = () => {
   const genericStats = [
     {
       title: "Number Of Markets",
-      value: cryptoDetails?.numberOfMarkets,
+      value: selectedCrypto?.numberOfMarkets,
       icon: <FundOutlined />,
     },
     {
       title: "Number Of Exchanges",
-      value: cryptoDetails?.numberOfExchanges,
+      value: selectedCrypto?.numberOfExchanges,
       icon: <MoneyCollectOutlined />,
     },
     {
       title: "Aprroved Supply",
-      value: cryptoDetails?.approvedSupply ? (
+      value: selectedCrypto?.approvedSupply ? (
         <CheckOutlined />
       ) : (
         <StopOutlined />
@@ -79,12 +79,12 @@ const CryptoDetails = () => {
     },
     {
       title: "Total Supply",
-      value: `$ ${millify(cryptoDetails?.totalSupply)}`,
+      value: `$ ${millify(selectedCrypto?.totalSupply)}`,
       icon: <ExclamationCircleOutlined />,
     },
     {
       title: "Circulating Supply",
-      value: `$ ${millify(cryptoDetails?.circulatingSupply)}`,
+      value: `$ ${millify(selectedCrypto?.circulatingSupply)}`,
       icon: <ExclamationCircleOutlined />,
     },
   ];
@@ -125,6 +125,19 @@ const CryptoDetails = () => {
                   <Text>{icon}</Text>
                   <Text>{title}</Text>
                 </Col>
+                <Text className="stats">
+                  {title === "Price to USD"
+                    ? `$ ${millify(selectedCrypto.price)}`
+                    : title === "Rank"
+                    ? selectedCrypto.rank
+                    : title === "24h Volume"
+                    ? selectedCrypto['24hVolume']
+                      ? `$ ${millify(selectedCrypto['24hVolume'])}`
+                      : "N/A" // Display "N/A" if volume is undefined
+                    : title === "Market Cap"
+                    ? `$ ${millify(selectedCrypto.marketCap)}`
+                    : "N/A"}
+                </Text>
               </Col>
             ))}
           </Col>
