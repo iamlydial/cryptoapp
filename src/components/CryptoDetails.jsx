@@ -16,7 +16,7 @@ import {
 } from "@ant-design/icons";
 
 import Loader from "./Loader";
-// import LineChart from "./LineChart";
+import LineChart from "./LineChart";
 
 import {
   useGetCryptoDetailsQuery,
@@ -106,6 +106,11 @@ const CryptoDetails = () => {
           ))}
         </Select>
 
+        {/* <LineChart
+          coinHistory={coinHistory}
+          currentPrice={millify(selectedCrypto?.price)}
+          coinName={selectedCrypto?.name}
+        /> */}
         <Col className="starts-container">
           <Col className="coin-value-statistics">
             <Col className="coin-value-statistics-heading">
