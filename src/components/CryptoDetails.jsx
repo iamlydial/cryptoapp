@@ -16,8 +16,12 @@ import {
 } from "@ant-design/icons";
 
 import Loader from "./Loader";
+// import LineChart from "./LineChart";
 
-import { useGetCryptoDetailsQuery } from "../services/cryptoApi";
+import {
+  useGetCryptoDetailsQuery,
+  useGetCryptoHistoryQuery,
+} from "../services/cryptoApi";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -26,8 +30,14 @@ const CryptoDetails = () => {
   const { coinId } = useParams();
   const [timePeriod, setTimePeriod] = useState("7d");
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
+  const { data: coinHistory } = useGetCryptoHistoryQuery({
+    coinId,
+    timePeriod,
+  });
+
   const cryptoDetails = data?.data?.coins;
   const genericData = data?.data?.stats;
+  const [coinDescription, setCoinDescription] = useState("");
 
   console.log(genericData, "Generic Data");
   console.log(cryptoDetails, "cryptodetails");
@@ -95,6 +105,7 @@ const CryptoDetails = () => {
             <Option key={date}>{date}</Option>
           ))}
         </Select>
+
         <Col className="starts-container">
           <Col className="coin-value-statistics">
             <Col className="coin-value-statistics-heading">
